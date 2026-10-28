@@ -1,11 +1,11 @@
-#include "httplib.h"
+#include <httplib.h>
 
 #include <cstdio>
 
 int main(void) {
   httplib::Server srv;
 
-  srv.Get("/api/health", [](const httplib::Request& req, httplib::Response& res) {
+  srv.Get("/api/health", [](const httplib::Request&, httplib::Response& res) {
     res.set_content(R"({"ok": true})", "application/json");
   });
 

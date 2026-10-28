@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(default_build_type "Debug")
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to '${default_build_type}' as none was specified")
@@ -16,12 +18,19 @@ if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
+# Off by default so active development isn't blocked by every warning.
+# Turn on for release/CI builds: -DRT_WARNINGS_AS_ERRORS=ON
+option(RT_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
+
 find_package(nlohmann_json 3.11.0 REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
 add_executable(rt src/main.cpp)
+
+# So headers under src/ can be included as "db/pool.h" etc.
+target_include_directories(rt PRIVATE src)
 
 target_link_libraries(rt 
   PRIVATE 
@@ -31,4 +40,7 @@ target_link_libraries(rt
   OpenSSL::SSL
   Threads::Threads
 )
-target_compile_options(rt PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(rt PRIVATE -Wall -Wextra -Wpedantic)
+if(RT_WARNINGS_AS_ERRORS)
+  target_compile_options(rt PRIVATE -Werror)
+endif()
