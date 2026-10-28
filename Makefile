@@ -43,6 +43,9 @@ db-up: ## Start the local MySQL container
 db-down: ## Stop the local MySQL container
 	docker compose down
 
+frontend:
+	python3 -m http.server 8080 --directory public
+
 help: ## Show this help
 	@echo "Usage: make <target> [BUILD_TYPE=Debug|Release] [WARNINGS_AS_ERRORS=ON|OFF] [BUILD_DIR=build]"
 	@echo "  Release build with -Werror: make release"

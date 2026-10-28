@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeTitan — Build, enhance, and tailor your resume</title>
+  <meta name="description" content="A fast, focused resume builder with AI enhancement and job tailoring." />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- Inline SVG favicon: self-contained, no asset file needed yet. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23082421'/%3E%3Ctext x='16' y='22' font-family='system-ui' font-size='16' font-weight='700' text-anchor='middle' fill='%2380cbc4'%3ERT%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <site-header></site-header>
+
+  <main>
+    <section class="hero">
+      <div class="container stack">
+        <p class="eyebrow">Resume builder · AI enhance · Job tailor</p>
+        <h1>Build a resume that earns the interview.</h1>
+        <p class="hero__lead text-muted">
+          Write it once, sharpen it with AI, and tailor it to any job posting in
+          seconds. No clutter, no lock-in — export a clean PDF when you're done.
+        </p>
+        <div class="cluster">
+          <a class="btn btn--primary btn--lg" href="/register.html">Start building</a>
+          <a class="btn btn--secondary btn--lg" href="/login.html">I have an account</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container features" aria-label="Features">
+      <article class="card feature">
+        <h3>Live builder</h3>
+        <p class="text-muted">
+          Edit your resume in a structured form and watch a formatted preview
+          update as you type.
+        </p>
+      </article>
+      <article class="card feature">
+        <h3>AI enhancement</h3>
+        <p class="text-muted">
+          Generate, brainstorm, or refine any section without losing your voice.
+        </p>
+      </article>
+      <article class="card feature">
+        <h3>Tailor to a job</h3>
+        <p class="text-muted">
+          Paste a job description and get targeted suggestions for your resume.
+        </p>
+      </article>
+      <article class="card feature">
+        <h3>Export to PDF</h3>
+        <p class="text-muted">
+          Print-ready styles mean "Save as PDF" produces a clean, ATS-friendly
+          document.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <!-- Page-specific styles live with the page until they're promoted to app.css -->
+  <style>
+    .hero {
+      padding-block: var(--space-8);
+      background:
+        radial-gradient(120% 120% at 100% 0%, var(--color-main-lightest) 0%, transparent 60%);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .hero__lead {
+      max-width: 60ch;
+      font-size: 1.125rem;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-main);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-5);
+      padding-block: var(--space-7);
+    }
+    .feature h3 { margin-bottom: var(--space-2); }
+  </style>
+
+  <!-- Defines <site-header> and <site-footer> (fetches /partials/*.html). -->
+  <script type="module" src="/js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ResumeTitan</title>
+  <meta name="description" content="Manage your resumes and saved job descriptions." />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23082421'/%3E%3Ctext x='16' y='22' font-family='system-ui' font-size='16' font-weight='700' text-anchor='middle' fill='%2380cbc4'%3ERT%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <site-header></site-header>
+
+  <main class="container dashboard">
+    <div class="page-head">
+      <div>
+        <h1>Dashboard</h1>
+        <p class="text-muted">Your resumes and the job postings you're targeting.</p>
+      </div>
+      <a class="btn btn--primary" href="/editor.html">+ New resume</a>
+    </div>
+
+    <!--
+      TODO: populate from GET /api/resumes. Static placeholders for layout only.
+    -->
+    <section class="panel" aria-labelledby="resumes-heading">
+      <div class="panel__head">
+        <h2 id="resumes-heading">Resumes</h2>
+        <span class="text-muted panel__count">3 saved</span>
+      </div>
+
+      <ul class="resume-grid" role="list">
+        <li class="resume-card card">
+          <h3 class="resume-card__title">Software Engineer — 2026</h3>
+          <p class="resume-card__meta text-muted">Theme: professional · Updated 2 days ago</p>
+          <div class="cluster resume-card__actions">
+            <a class="btn btn--primary" href="/editor.html">Edit</a>
+            <button class="btn btn--secondary" type="button">Duplicate</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+        </li>
+
+        <li class="resume-card card">
+          <h3 class="resume-card__title">Frontend Developer</h3>
+          <p class="resume-card__meta text-muted">Theme: modern · Updated 1 week ago</p>
+          <div class="cluster resume-card__actions">
+            <a class="btn btn--primary" href="/editor.html">Edit</a>
+            <button class="btn btn--secondary" type="button">Duplicate</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+        </li>
+
+        <li class="resume-card card">
+          <h3 class="resume-card__title">Untitled</h3>
+          <p class="resume-card__meta text-muted">Theme: professional · Created today</p>
+          <div class="cluster resume-card__actions">
+            <a class="btn btn--primary" href="/editor.html">Edit</a>
+            <button class="btn btn--secondary" type="button">Duplicate</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+        </li>
+
+        <li class="resume-card resume-card--new">
+          <a class="resume-card__new-link" href="/editor.html">
+            <span aria-hidden="true">+</span>
+            <span>Start a new resume</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!--
+      TODO: populate from GET /api/jobs. Static placeholders for layout only.
+    -->
+    <section class="panel" aria-labelledby="jobs-heading">
+      <div class="panel__head">
+        <h2 id="jobs-heading">Job descriptions</h2>
+        <button class="btn btn--secondary" type="button">+ Add job</button>
+      </div>
+
+      <ul class="job-list" role="list">
+        <li class="job-row">
+          <div>
+            <h3 class="job-row__title">Senior Backend Engineer</h3>
+            <p class="job-row__meta text-muted">Acme Corp · added 2 days ago</p>
+          </div>
+          <div class="cluster">
+            <button class="btn btn--secondary" type="button">Tailor resume</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+        </li>
+
+        <li class="job-row">
+          <div>
+            <h3 class="job-row__title">Platform Engineer</h3>
+            <p class="job-row__meta text-muted">Globex · added 5 days ago</p>
+          </div>
+          <div class="cluster">
+            <button class="btn btn--secondary" type="button">Tailor resume</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <!-- Page-specific styles; promote to app.css once reused elsewhere. -->
+  <style>
+    .dashboard {
+      padding-block: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .page-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .panel__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--space-2);
+    }
+
+    .panel__count { font-size: 0.9rem; }
+
+    .resume-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .resume-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-5);
+    }
+
+    .resume-card__title { font-size: 1.05rem; }
+    .resume-card__meta { font-size: 0.85rem; }
+    .resume-card__actions { margin-top: auto; }
+
+    .resume-card--new {
+      display: grid;
+      place-items: center;
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      background: transparent;
+      min-height: 160px;
+    }
+
+    .resume-card__new-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-main-dark);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .resume-card__new-link:hover { text-decoration: none; color: var(--color-main); }
+    .resume-card__new-link span[aria-hidden] { font-size: 1.75rem; line-height: 1; }
+
+    .job-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .job-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .job-row:last-child { border-bottom: 0; }
+    .job-row__title { font-size: 1rem; }
+    .job-row__meta { font-size: 0.85rem; }
+  </style>
+
+  <script type="module" src="/js/components.js"></script>
+</body>
+</html>
