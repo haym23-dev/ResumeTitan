@@ -43,12 +43,11 @@ db-up: ## Start the local MySQL container
 db-down: ## Stop the local MySQL container
 	docker compose down
 
-frontend:
+frontend:	## Serve only the HTML/CSS, for prototyping pages
 	python3 -m http.server 8080 --directory public
 
 help: ## Show this help
 	@echo "Usage: make <target> [BUILD_TYPE=Debug|Release] [WARNINGS_AS_ERRORS=ON|OFF] [BUILD_DIR=build]"
-	@echo "  Release build with -Werror: make release"
 	@echo
 	@grep -E '^[a-zA-Z0-9_-]+:.*## ' $(MAKEFILE_LIST) \
 		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'

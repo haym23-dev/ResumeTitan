@@ -1,3 +1,5 @@
+#include "api_handler.hpp"
+
 #include <httplib.h>
 
 #include <cstdio>
@@ -5,9 +7,8 @@
 int main(void) {
   httplib::Server srv;
 
-  srv.Get("/api/health", [](const httplib::Request&, httplib::Response& res) {
-    res.set_content(R"({"ok": true})", "application/json");
-  });
+  srv.Get("/api/health", getHealth);
+  srv.Get("/api/user", getUser);
 
   srv.set_mount_point("/", "./public");
 
