@@ -19,6 +19,10 @@
       { "network": "GitHub", "username": "mitchellray", "url": "https://github.com/mitchellray" }
     ]
   },
+  "targetTitles": [
+    "Senior Software Engineer",
+    "Full Stack Engineer"
+  ],
   "work": [
     {
       "name": "Cloud Systems",

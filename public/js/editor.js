@@ -7,6 +7,7 @@
 
 import { loadResume, subscribe } from "./state.js";
 import { createPreview } from "./preview.js";
+import { mountSectionView } from "./section-view.js";
 
 const SPLIT_MIN = 30;
 const SPLIT_MAX = 70;
@@ -110,6 +111,8 @@ async function boot() {
   subscribe((resume) => {
     if (resume) preview.render(resume);
   });
+
+  mountSectionView(document.getElementById("editor-pane"));
 
   try {
     await loadResume();

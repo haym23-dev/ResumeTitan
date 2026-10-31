@@ -6,6 +6,9 @@
    print/PDF view. Ported in spirit from depr/client/src/templates/layouts/*.
    ========================================================================== */
 
+import { formatDate, dateRange } from "../format.js";
+import { sanitizeHtml } from "../sanitize.js";
+
 const ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 
 /** Escape text for safe interpolation into HTML. */
@@ -13,19 +16,9 @@ function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (ch) => ESCAPES[ch]);
 }
 
-/** "2022-03" -> "03/2022". Empty/null -> "". */
-function formatDate(iso) {
-  if (!iso) return "";
-  const match = /^(\d{4})-(\d{2})/.exec(String(iso));
-  return match ? `${match[2]}/${match[1]}` : esc(iso);
-}
-
-/** A date range: "03/2022 – Present" (end omitted when blank). */
-function dateRange(start, end, current) {
-  const from = formatDate(start);
-  const to = current ? "Present" : formatDate(end);
-  if (from && to) return `${from} \u2013 ${to}`;
-  return from || to || "";
+/** Sanitize rich-text HTML for interpolation (bold/italic/lists survive). */
+function rich(value) {
+  return sanitizeHtml(value);
 }
 
 function join(parts, sep = " &middot; ") {
@@ -46,10 +39,15 @@ function section(id, title, body) {
 function bullets(items) {
   const list = (items || []).filter(Boolean);
   if (!list.length) return "";
-  return `<ul class="resume-list">${list.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`;
+  return `<ul class="resume-list">${list.map((item) => `<li>${rich(item)}</li>`).join("")}</ul>`;
 }
 
-function renderHeader(basics = {}) {
+/** Drop items flagged `_hidden` by the editor's include checkbox. */
+function visible(list) {
+  return (Array.isArray(list) ? list : []).filter((item) => !(item && item._hidden === true));
+}
+
+function renderHeader(basics = {}, targetTitles = []) {
   const where = join([basics.location?.city, basics.location?.region]);
   const contact = join(
     [where, basics.phone, basics.email, basics.url].filter(Boolean),
@@ -58,18 +56,20 @@ function renderHeader(basics = {}) {
     .filter((p) => p && (p.url || p.username))
     .map((p) => `<a class="resume-contact__link" href="${esc(p.url || "#")}">${esc(p.network || p.username)}</a>`)
     .join("");
+  const targets = targetTitles.filter(Boolean);
 
   return `
     <header class="resume-header">
       <h1 class="resume-header__name">${esc(basics.name)}</h1>
       ${basics.label ? `<p class="resume-header__label">${esc(basics.label)}</p>` : ""}
+      ${targets.length ? `<p class="resume-header__targets">${esc(targets.join(" \u00b7 "))}</p>` : ""}
       ${contact ? `<p class="resume-header__contact">${contact}</p>` : ""}
       ${profiles ? `<p class="resume-header__profiles">${profiles}</p>` : ""}
     </header>`;
 }
 
 function renderSummary(basics = {}) {
-  return section("blurbs", "Professional Summary", basics.summary ? `<p class="resume-text">${esc(basics.summary)}</p>` : "");
+  return section("blurbs", "Professional Summary", basics.summary ? `<p class="resume-text">${rich(basics.summary)}</p>` : "");
 }
 
 function renderWork(work = []) {
@@ -99,7 +99,7 @@ function renderProjects(projects = []) {
           <span class="resume-entry__dates">${dateRange(project.startDate, project.endDate, project.endDateCurrent)}</span>
         </div>
         ${project.organization ? `<p class="resume-entry__sub">${esc(project.organization)}</p>` : ""}
-        ${project.description ? `<p class="resume-text">${esc(project.description)}</p>` : ""}
+        ${project.description ? `<p class="resume-text">${rich(project.description)}</p>` : ""}
         ${bullets(project.highlights)}
       </article>`,
     )
@@ -162,7 +162,7 @@ function renderAwards(awards = []) {
           <span class="resume-entry__dates">${formatDate(award.date)}</span>
         </div>
         ${award.awarder ? `<p class="resume-entry__sub">${esc(award.awarder)}</p>` : ""}
-        ${award.summary ? `<p class="resume-text">${esc(award.summary)}</p>` : ""}
+        ${award.summary ? `<p class="resume-text">${rich(award.summary)}</p>` : ""}
       </article>`,
     )
     .join("");
@@ -179,7 +179,7 @@ function renderVolunteer(volunteer = []) {
           <span class="resume-entry__dates">${dateRange(role.startDate, role.endDate)}</span>
         </div>
         ${role.position && role.organization ? `<p class="resume-entry__sub">${esc(role.organization)}</p>` : ""}
-        ${role.summary ? `<p class="resume-text">${esc(role.summary)}</p>` : ""}
+        ${role.summary ? `<p class="resume-text">${rich(role.summary)}</p>` : ""}
         ${bullets(role.highlights)}
       </article>`,
     )
@@ -213,15 +213,15 @@ export function renderResume(resume = {}) {
   const basics = resume.basics || {};
   const ordered = [
     renderSummary(basics),
-    renderWork(resume.work),
-    renderEducation(resume.education),
-    renderSkills(resume.skills),
-    renderCertificates(resume.certificates),
-    renderAwards(resume.awards),
-    renderProjects(resume.projects),
-    renderVolunteer(resume.volunteer),
-    renderPublications(resume.publications),
+    renderWork(visible(resume.work)),
+    renderEducation(visible(resume.education)),
+    renderSkills(visible(resume.skills)),
+    renderCertificates(visible(resume.certificates)),
+    renderAwards(visible(resume.awards)),
+    renderProjects(visible(resume.projects)),
+    renderVolunteer(visible(resume.volunteer)),
+    renderPublications(visible(resume.publications)),
   ].join("");
 
-  return `${renderHeader(basics)}${ordered}`;
+  return `${renderHeader(basics, visible(resume.targetTitles))}${ordered}`;
 }

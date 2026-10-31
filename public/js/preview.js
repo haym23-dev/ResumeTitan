@@ -26,6 +26,7 @@ function buildDocument(bodyHtml) {
  */
 export function createPreview(iframe) {
   let observer = null;
+  let loaded = false;
 
   function syncHeight() {
     try {
@@ -47,13 +48,25 @@ export function createPreview(iframe) {
     syncHeight();
   }
 
-  iframe.addEventListener("load", observe);
+  iframe.addEventListener("load", () => {
+    loaded = true;
+    observe();
+  });
   window.addEventListener("resize", syncHeight);
 
   return {
     /** @param {object} resume JSON-Resume document */
     render(resume) {
-      iframe.srcdoc = buildDocument(renderResume(resume));
+      const html = renderResume(resume);
+      const doc = iframe.contentDocument;
+      // Patch the body in place once the document (and its stylesheets) have
+      // loaded — avoids a full iframe reload/flicker on every keystroke.
+      if (loaded && doc && doc.body) {
+        doc.body.innerHTML = html;
+        syncHeight();
+      } else {
+        iframe.srcdoc = buildDocument(html);
+      }
     },
     syncHeight,
   };

@@ -58,6 +58,13 @@ body.resume-doc {
   color: var(--resume-muted);
 }
 
+.resume-header__targets {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--resume-muted);
+}
+
 .resume-header__contact,
 .resume-header__profiles {
   margin: 0.4rem 0 0;

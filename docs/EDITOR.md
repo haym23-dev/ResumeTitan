@@ -69,6 +69,8 @@ Item row anatomy:
 | `public/js/editor.js` | bootstraps state + wires the shell |
 | `public/js/state.js` | in-memory `resume` object, subscribe/notify, undo snapshots |
 | `public/js/sections.js` | section + field schema driving accordion, rows, forms |
+| `public/js/section-view.js` | renders the left editor pane (accordion + item rows) |
+| `public/js/format.js` | shared date/range formatting for the view and templates |
 | `public/js/form.js` | inline item editor (fields + contenteditable) |
 | `public/js/templates/*.js` | pure `render(resume) -> html`, ported from `depr/client/src/templates/layouts/*` |
 | `public/js/preview.js` | renders into the `srcdoc` iframe (debounced) + locate/highlight |
@@ -118,3 +120,11 @@ fields. The canonical schema is unchanged.
 4. Stub tabs: Designer / Analyzer / Job Matcher / Cover Letter.
 5. Persistence (`/api/resumes`), undo, export PDF.
 6. Later: per-field include checkboxes, drag-reorder, duplicate, locate.
+
+## Status
+
+- Done: 1 (shell), 2 (accordion + item rows), 3 (inline editing + rich text + add/delete + live preview).
+- Pending: 4 (real tab panels), 5 (persistence/undo/export), 6 (extras).
+- Extra files beyond the original plan: `format.js` (shared date formatting),
+  `sanitize.js` (allow-list HTML sanitizer for rich fields),
+  `section-view.js` (the left-pane renderer).
