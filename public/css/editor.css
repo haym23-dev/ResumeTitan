@@ -656,6 +656,91 @@
     color: var(--color-text-muted);
     pointer-events: none;
   }
+
+  /* ------------------------------------------------------------------------
+     "Coming soon" tabs
+     ------------------------------------------------------------------------ */
+  .tab__soon {
+    margin-left: 0.1rem;
+    padding: 0 0.35rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--editor-surface-2);
+    color: var(--color-text-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 30rem;
+    padding: var(--space-7) var(--space-6);
+    text-align: center;
+  }
+
+  .coming-soon__icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 999px;
+    background: var(--color-main-lightest);
+    color: var(--color-main);
+  }
+
+  .coming-soon__glyph { width: 1.75rem; height: 1.75rem; }
+
+  .coming-soon__pill {
+    margin-top: 0.25rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--editor-surface-2);
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .coming-soon__title { font-size: 1.4rem; }
+  .coming-soon__tagline { max-width: 34ch; }
+
+  .coming-soon__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .coming-soon__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .coming-soon__check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.1rem;
+    border-radius: 999px;
+    background: var(--color-main-lightest);
+    color: var(--color-main-dark);
+  }
 }
 
 @media (max-width: 860px) {

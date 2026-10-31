@@ -123,8 +123,8 @@ fields. The canonical schema is unchanged.
 
 ## Status
 
-- Done: 1 (shell), 2 (accordion + item rows), 3 (inline editing + rich text + add/delete + live preview).
-- Pending: 4 (real tab panels), 5 (persistence/undo/export), 6 (extras).
+- Done: 1 (shell), 2 (accordion + item rows), 3 (inline editing + rich text + add/delete + live preview), 4 (polished "coming soon" tabs + hash routing).
+- Pending: 5 (persistence/undo/export), 6 (extras: per-field checkboxes, drag-reorder, duplicate, locate).
 - Extra files beyond the original plan: `format.js` (shared date formatting),
   `sanitize.js` (allow-list HTML sanitizer for rich fields),
   `section-view.js` (the left-pane renderer).
