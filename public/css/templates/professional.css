@@ -1,0 +1,160 @@
+/* ==========================================================================
+   templates/professional.css — the resume page itself.
+
+   Loaded inside the preview iframe's srcdoc document, so it is self-contained:
+   it does NOT inherit base.css. Keep it page-oriented (US Letter-ish) and
+   print-friendly.
+   ========================================================================== */
+
+:root {
+  --resume-ink: #1f2933;
+  --resume-muted: #52606d;
+  --resume-accent: #115e59;
+  --resume-line: #d8e0e0;
+  --resume-font: Georgia, "Times New Roman", Times, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body.resume-doc {
+  margin: 0;
+}
+
+body.resume-doc {
+  padding: 3rem 2.75rem;
+  font-family: var(--resume-font);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--resume-ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Header ------------------------------------------------------------- */
+.resume-header {
+  padding-bottom: 0.9rem;
+  border-bottom: 2px solid var(--resume-accent);
+  margin-bottom: 1.1rem;
+}
+
+.resume-header__name {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--resume-accent);
+}
+
+.resume-header__label {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--resume-muted);
+}
+
+.resume-header__contact,
+.resume-header__profiles {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: var(--resume-muted);
+}
+
+.resume-contact__link {
+  color: var(--resume-accent);
+  text-decoration: none;
+}
+
+.resume-header__profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* --- Sections ----------------------------------------------------------- */
+.resume-section {
+  margin-top: 1.1rem;
+}
+
+.resume-section__title {
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--resume-ink);
+  border-bottom: 1px solid var(--resume-line);
+}
+
+/* --- Entries ------------------------------------------------------------ */
+.resume-entry {
+  margin-bottom: 0.75rem;
+}
+.resume-entry:last-child {
+  margin-bottom: 0;
+}
+.resume-entry--compact {
+  margin-bottom: 0.4rem;
+}
+
+.resume-entry__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.resume-entry__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--resume-ink);
+}
+
+.resume-entry__dates {
+  flex: none;
+  font-size: 0.8rem;
+  color: var(--resume-muted);
+  white-space: nowrap;
+}
+
+.resume-entry__sub {
+  margin: 0.1rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--resume-muted);
+}
+
+.resume-text {
+  margin: 0.25rem 0 0;
+  font-size: 0.86rem;
+  color: var(--resume-ink);
+}
+
+.resume-list {
+  margin: 0.3rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.resume-list li {
+  margin-bottom: 0.2rem;
+  font-size: 0.86rem;
+}
+.resume-list li::marker {
+  color: var(--resume-accent);
+}
+
+/* --- Skills ------------------------------------------------------------- */
+.resume-skill {
+  margin: 0.25rem 0 0;
+  font-size: 0.86rem;
+}
+.resume-skill__name {
+  font-weight: 700;
+}

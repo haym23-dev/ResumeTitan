@@ -1,0 +1,35 @@
+/* ==========================================================================
+   print.css — print / "Save as PDF" rules for the resume document.
+
+   Loaded in the preview iframe alongside the active template stylesheet. Keeps
+   the exported PDF clean: no chrome, no page breaks inside an entry, sensible
+   margins.
+   ========================================================================== */
+
+@page {
+  size: letter;
+  margin: 0.6in 0.65in;
+}
+
+@media print {
+  html,
+  body.resume-doc {
+    padding: 0;
+    background: #fff;
+    font-size: 10.5pt;
+  }
+
+  .resume-section,
+  .resume-entry {
+    break-inside: avoid;
+  }
+
+  .resume-section__title {
+    break-after: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

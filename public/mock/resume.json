@@ -1,4 +1,96 @@
 {
-  "id": "1",
-  "name": "Mock Resume"
+  "basics": {
+    "name": "Mitchell Ray",
+    "label": "Full Stack Software Engineer",
+    "image": "",
+    "email": "mitchell.ray@example.com",
+    "phone": "(555) 123-4567",
+    "url": "https://mitchellray.dev",
+    "summary": "Full stack software engineer with 6+ years building performant web applications end to end. Comfortable owning features from schema to pixel, with a focus on developer experience, observability, and shipping small increments often.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Raleigh",
+      "region": "NC",
+      "countryCode": "US"
+    },
+    "profiles": [
+      { "network": "LinkedIn", "username": "mitchellray", "url": "https://linkedin.com/in/mitchellray" },
+      { "network": "GitHub", "username": "mitchellray", "url": "https://github.com/mitchellray" }
+    ]
+  },
+  "work": [
+    {
+      "name": "Cloud Systems",
+      "position": "Senior Software Engineer",
+      "location": "Raleigh, NC",
+      "startDate": "2022-03",
+      "endDate": "",
+      "endDateCurrent": true,
+      "highlights": [
+        "Led migration of a monolith's billing path to an event-driven service, cutting p95 latency by 42%.",
+        "Built an internal feature-flag SDK adopted by 14 teams, removing the need for bespoke release tooling.",
+        "Mentored 4 engineers and introduced a weekly design-review ritual that reduced rework."
+      ]
+    },
+    {
+      "name": "Northwind Labs",
+      "position": "Software Engineer",
+      "location": "Durham, NC",
+      "startDate": "2019-06",
+      "endDate": "2022-02",
+      "endDateCurrent": false,
+      "highlights": [
+        "Shipped a customer analytics dashboard used daily by 3,000+ accounts.",
+        "Reduced CI time from 22 to 7 minutes by parallelizing the test matrix and caching builds."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "North Carolina State University",
+      "area": "Computer Science",
+      "studyType": "B.S.",
+      "startDate": "2015-08",
+      "endDate": "2019-05",
+      "score": "3.8"
+    }
+  ],
+  "skills": [
+    { "name": "Languages", "keywords": ["JavaScript", "TypeScript", "Python", "Go", "SQL"] },
+    { "name": "Frameworks", "keywords": ["React", "Node.js", "Express", "Next.js", "Tailwind CSS"] },
+    { "name": "Tools & AI", "keywords": ["Docker", "PostgreSQL", "Redis", "OpenAI", "Gemini", "LangChain"] }
+  ],
+  "projects": [
+    {
+      "name": "ResumeTitan",
+      "organization": "Myself",
+      "startDate": "2024-10",
+      "endDate": "2025-12",
+      "description": "",
+      "highlights": [
+        "Built an AI-driven resume assistant using a MERN stack integrated with Google Gemini to generate personalized resume content and interview preparation.",
+        "Deployed to production on Fly.io with automated CI/CD via GitHub Actions.",
+        "Acquired 200+ users through word-of-mouth, free resume workshops, and partnerships with career advisors and government agencies (NC Works)."
+      ]
+    }
+  ],
+  "awards": [
+    { "title": "Engineering Excellence Award", "date": "2023-12", "awarder": "Cloud Systems", "summary": "Recognized for leading the billing migration." }
+  ],
+  "certificates": [
+    { "name": "AWS Certified Solutions Architect – Associate", "date": "2023-05", "issuer": "Amazon Web Services" }
+  ],
+  "volunteer": [
+    {
+      "organization": "NC Works",
+      "position": "Career Mentor",
+      "startDate": "2023-01",
+      "endDate": "",
+      "summary": "Run monthly resume workshops and 1:1 mock interviews for career changers."
+    }
+  ],
+  "publications": [
+    { "name": "Shipping Faster with Trunk-Based Development", "publisher": "Cloud Systems Engineering Blog", "releaseDate": "2024-04", "url": "" }
+  ]
 }
