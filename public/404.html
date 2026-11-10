@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — ResumeTitan</title>
+  <meta name="description" content="The page you were looking for doesn't exist." />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- Inline SVG favicon: self-contained, no asset file needed yet. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23082421'/%3E%3Ctext x='16' y='22' font-family='system-ui' font-size='16' font-weight='700' text-anchor='middle' fill='%2380cbc4'%3ERT%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <site-header></site-header>
+
+  <main>
+    <section class="notfound container">
+      <div class="notfound__inner stack">
+        <p class="notfound__code" aria-hidden="true">404</p>
+        <h1>This page took a wrong turn.</h1>
+        <p class="notfound__lead text-muted">
+          The page you're looking for doesn't exist, was moved, or the link is
+          broken. Let's get you back to building.
+        </p>
+        <div class="cluster notfound__actions">
+          <a class="btn btn--primary btn--lg" href="/">Back to home</a>
+          <a class="btn btn--secondary btn--lg" href="/editor.html">Open the editor</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <!-- Page-specific styles live with the page until they're promoted to app.css -->
+  <style>
+    .notfound {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-block: var(--space-8);
+      text-align: center;
+    }
+    .notfound__inner {
+      max-width: 46ch;
+      margin-inline: auto;
+    }
+    .notfound__code {
+      font-family: var(--font-mono);
+      font-size: clamp(4rem, 18vw, 9rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--color-main-light);
+      /* Soft brand glow behind the number. */
+      text-shadow: 0 8px 30px rgba(17, 94, 89, 0.25);
+    }
+    .notfound h1 {
+      margin-top: var(--space-3);
+    }
+    .notfound__lead {
+      font-size: 1.125rem;
+    }
+    .notfound__actions {
+      justify-content: center;
+      margin-top: var(--space-5);
+    }
+  </style>
+
+  <!-- Defines <site-header> and <site-footer> (fetches /partials/*.html). -->
+  <script type="module" src="/js/components.js"></script>
+</body>
+</html>

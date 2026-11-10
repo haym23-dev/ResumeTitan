@@ -27,7 +27,10 @@ find_package(httplib CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
-add_executable(rt src/main.cpp)
+add_executable(rt
+  src/main.cpp
+  src/api_handler.cpp
+)
 
 # So headers under src/ can be included as "db/pool.h" etc.
 target_include_directories(rt PRIVATE src)

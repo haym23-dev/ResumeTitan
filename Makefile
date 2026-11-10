@@ -19,6 +19,7 @@ build: configure ## Compile
 	$(CMAKE) --build $(BUILD_DIR) --parallel $(JOBS)
 
 run: build ## Build then run from the repo root
+	@set -a; source .env; set +a; \
 	./$(BUILD_DIR)/rt
 
 test: build ## Run the test suite

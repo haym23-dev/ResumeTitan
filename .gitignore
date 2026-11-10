@@ -1,4 +1,4 @@
 build/
 build-release/
 docs/
-src/secrets.h
+.env
