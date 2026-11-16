@@ -15,7 +15,7 @@ jobs:
 
       - name: Run tests and calculate coverage
         run: |
-          go test -coverprofile=coverage.out ./...
+          make test-cover
           TOTAL=$(go tool cover -func=coverage.out | grep total | awk '{print $3}')
           echo "COVERAGE=$TOTAL" >> $GITHUB_ENV
 
@@ -23,7 +23,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: <YOUR_GIST_ID>
+          gistID: 2e53ba20dfe5742fa7beec7509976488
           filename: coverage.json
           label: coverage
           message: ${{ env.COVERAGE }}
