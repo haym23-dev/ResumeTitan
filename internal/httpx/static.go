@@ -33,6 +33,6 @@ func serveNotFound(w http.ResponseWriter, r *http.Request, assets fs.FS) {
 	w.WriteHeader(http.StatusNotFound)
 	_, err = w.Write(page)
 	if err != nil {
-		log.Fatalf("write 404 page: %v", err)
+		log.Printf("write 404 page: %v", err)
 	}
 }
