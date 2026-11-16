@@ -4,4 +4,5 @@ docs/
 .env
 bin/
 deprecated/
-coverage.*
+coverage.html
+coverage.out
