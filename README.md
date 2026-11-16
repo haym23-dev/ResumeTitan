@@ -1,6 +1,6 @@
 # ResumeTitan
 
-![Coverage](https://shields.io<USERNAME>/<GIST_ID>/raw/coverage.json)
+![Coverage](https://shields.io)
 
 A fast, self-hosted resume builder. Write a resume once, sharpen it with AI, and tailor it to any job posting — then export a clean, ATS-friendly PDF.
 
