@@ -34,12 +34,25 @@ func run(ctx context.Context, stop func()) error {
 	}
 
 	mux := http.NewServeMux()
+
+	// Add endpoints for web and api
 	mux.Handle("/", httpx.StaticHandler(web.Files))
 	mux.HandleFunc("GET /api/health", httpx.GetHealth)
+	mux.HandleFunc("GET /api/ping", httpx.HandlePing)
+
+	// ---Add middleware---
+	// Panic shutdown recovery
+	middlewareHandler := httpx.RecoveryMiddleware(mux)
+	// Body Size (1 << 20 = 1 MB)
+	middlewareHandler = httpx.MaxBodySizeMiddleware(10)(middlewareHandler)
+	// Logging
+	middlewareHandler = httpx.LoggingMiddleware(middlewareHandler)
+	// Request ID
+	middlewareHandler = httpx.RequestIdMiddleware(middlewareHandler)
 
 	srv := &http.Server{
 		Addr:              net.JoinHostPort(cfg.Host, cfg.Port),
-		Handler:           mux,
+		Handler:           middlewareHandler,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       5 * time.Second,
 		WriteTimeout:      20 * time.Second,

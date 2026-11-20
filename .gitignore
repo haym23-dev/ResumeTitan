@@ -6,3 +6,4 @@ bin/
 deprecated/
 coverage.html
 coverage.out
+*.db
